@@ -1,8 +1,18 @@
 {
   "name": "koishi-plugin-speak",
   "description": "把网络用语的缩写翻译成完整的句子",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "lib/index.js",
+  "homepage": "https://github.com/share121/speak",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/share121/speak.git"
+  },
+  "author": {
+    "name": "share121",
+    "email": "2854631158@qq.com",
+    "url": "https://github.com/share121"
+  },
   "typings": "lib/index.d.ts",
   "files": [
     "lib",
@@ -12,7 +22,11 @@
   "keywords": [
     "chatbot",
     "koishi",
-    "plugin"
+    "plugin",
+    "translate",
+    "speak",
+    "abbreviation",
+    "search"
   ],
   "peerDependencies": {
     "koishi": "^4.18.7"
