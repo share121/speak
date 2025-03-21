@@ -59,17 +59,18 @@ export function apply(ctx: Context) {
   ctx.command("speak <text:text>").action(async (_, text) => {
     if (!text || !/[a-z0-9]/i.test(text)) return "请输入正确的文本";
     const tags = await guess(text);
+    console.log(text, tags);
     if (!tags.length) return "尚未录入该词";
     return tags.map((tag) => {
       if (tag.trans) {
         return (
           <p>
-            {tag.name}: {tag.trans.length > 1 ? <br /> : ""}
+            <code>{tag.name}</code> : {tag.trans.length > 1 ? <br /> : ""}
             {join(
               transArrange(tag.trans).map((tran) =>
                 tran.sub ? (
                   <>
-                    ${tran.text} <sub>${tran.sub}</sub>`
+                    {tran.text} (<sub>{tran.sub}</sub>)
                   </>
                 ) : (
                   <>{tran.text}</>
@@ -83,12 +84,17 @@ export function apply(ctx: Context) {
       if (tag.inputting && tag.inputting.length > 0) {
         return (
           <p>
-            {tag.name} 可能为: {tag.inputting.length > 1 ? <br /> : ""}
+            <code>{tag.name}</code> 可能为 :{" "}
+            {tag.inputting.length > 1 ? <br /> : ""}
             {join(tag.inputting, <br />)}
           </p>
         );
       }
-      return <p>{tag.name}: 尚未录入该词</p>;
+      return (
+        <p>
+          <code>{tag.name}</code> : 尚未录入该词
+        </p>
+      );
     });
   });
 }
